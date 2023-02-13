@@ -1,0 +1,110 @@
+<!--
+ * @Author: liujie tiandiweb@qq.com
+ * @Date: 2022-10-26 16:10:38
+ * @LastEditors: liujie tiandiweb@qq.com
+ * @LastEditTime: 2022-11-28 10:58:00
+ * @FilePath: \mk-webd:\work\svgdemo\scale.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		/* html {
+			overflow: hidden;
+		}
+		body {
+			overflow: scroll;
+		} */
+		#app{
+			width: 100%;
+			height: 100%;
+			
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div id="response"
+			style="overflow: auto;"
+		>
+			<div 
+				id="content"
+			style="
+			width: 100%; height:100%;
+			background-color: royalblue;
+			">
+				<div style="font-size: 12px;">12PX d 的文字</div>
+					<div style="font-size: 13px;width: 900px;">13PX d 的文字</div>
+					<div style="font-size: 14px;">14PX d 的文字</div>
+					<div style="font-size: 15px;">15PX d 的文字</div>
+					<div style="font-size: 16px;">16PX d 的文字</div>
+					<div style="font-size: 17px;">17PX d 的文字</div>
+					<div style="font-size: 18px;">18PX d 的文字</div>
+					<div style="font-size: 20px;">20PX d 的文字</div>
+	
+					<h1 id="msg"></h1>
+						
+			</div>
+		</div>
+	</div>
+	<script src="../dist/scale-web-min.js"></script>
+	<script>
+		var _scaleSplitPix = {
+			minPix: 1766,
+			maxPix: 1920,
+		};
+		var _effectScreen = {
+			minScreenSize: 1540,
+			maxScreenSize: 1920,
+		};
+		if(window.screen.width>_effectScreen.minScreenSize || window.screen.width<=_effectScreen.maxScreenSize){
+			//不生效。
+			var msg = "缩放效果在你的屏幕不会生效，因为你的 屏幕宽："+window.screen.width+"px 介于 "+_effectScreen.minScreenSize+" 和 "+_effectScreen.maxScreenSize+"（含）之间，在此配置期间是不会产生缩放效果。";
+			document.getElementById('msg').innerText = msg;
+		}else {
+			//生效
+			if(window.screen.width<=_effectScreen.minScreenSize) {
+				var msg = "你的屏幕宽：window.screen.width 小于或等于 _effectScreen.minScreenSize，属于小屏幕，达到缩放条件，会将你的内容缩小以适配屏幕。";
+				document.getElementById('msg').innerText = msg;
+			} else if(window.screen.width>_effectScreen.maxScreenSize) {
+				var msg = "你的屏幕宽：window.screen.width 大于 _effectScreen.minScreenSize，属于超大屏幕，达到缩放条件，会将你的内容放大以适配屏幕。";
+				document.getElementById('msg').innerText = msg;
+			}
+		}
+		var __config = {
+			forceMinScale:false,//For Middle Screen
+			forbidMinScale:false,//ForBigScreen
+			selector:'#response',
+			parentSelector:'#app',
+			// boxMinWidth:900,
+			// boxMinHeight:450,
+			// enable:false,//是否开启功能 false禁用，true 任何情况都缩放 ，不设置则按照条件
+			onScale:function(scale){
+				console.log('缩放完成，缩放率:'+scale)
+			},
+			onReady:function(isScale){
+				console.log('你的屏幕是否需要缩放:'+isScale)
+			},
+		};
+		
+		cssScale(_scaleSplitPix,_effectScreen,__config);
+	</script>
+</body>
+
+</html>

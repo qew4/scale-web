@@ -1,0 +1,85 @@
+<!--
+ * @Author: liujie tiandiweb@qq.com
+ * @Date: 2022-10-26 16:10:38
+ * @LastEditors: liujie tiandiweb@qq.com
+ * @LastEditTime: 2022-11-28 10:58:00
+ * @FilePath: \mk-webd:\work\svgdemo\scale.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		/* html {
+			overflow: hidden;
+		}
+		body {
+			overflow: scroll;
+		} */
+		#app{
+			width: 100%;
+			height: 100%;
+			
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div id="response"
+			style="overflow: auto;"
+		>
+			<div 
+				id="content"
+			style="
+			width: 100%; height:100%;
+			">
+				<img id="img" width="100%" height="100%" src="./big-screen.png" alt="" style="display:block;">
+			</div>
+		</div>
+	</div>
+	<script src="../dist/css-scale-min.js"></script>
+	<script>
+		var _scaleSplitPix = {
+			minPix: 1766,
+			maxPix: 1920,
+		};
+		var _effectScreen = {
+			minScreenSize: 1540,
+			maxScreenSize: 1920,
+		};
+		var __config = {
+			forceMinScale:false,//For Middle Screen
+			forbidMinScale:false,//ForBigScreen
+			selector:'#response',
+			parentSelector:'#app',
+			// boxMinWidth:900,
+			// boxMinHeight:450,
+			// enable:false,//是否开启功能 false禁用，true 任何情况都缩放 ，不设置则按照条件
+			onScale:function(scale){
+				console.log('缩放完成，缩放率:'+scale)
+			},
+			onReady:function(isScale){
+				console.log('你的屏幕是否需要缩放:'+isScale)
+			},
+		};
+		
+		cssScale(_scaleSplitPix,_effectScreen,__config);
+	</script>
+</body>
+
+</html>

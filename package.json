@@ -1,0 +1,19 @@
+{
+  "name": "scale-web",
+  "version": "1.0.1",
+  "description": "web page zoom",
+  "main": "dist/index.js",
+  "repository": "https://github.com/qew4/css-scale.git",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web",
+    "page",
+    "zoom",
+    "web",
+    "scale"
+  ],
+  "author": "liujie",
+  "license": "ISC"
+}
